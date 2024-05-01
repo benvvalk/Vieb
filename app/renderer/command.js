@@ -2667,6 +2667,7 @@ const commands = {
     "echo": ({args, src}) => notify({
         "fields": [args.join(" ")], "id": "util.untranslated", src
     }),
+    "edit": ({src}) => openSpecialPage(src, "editor", false),
     "h": ({src, args}) => help(src, false, ...args),
     "h!": ({src, args}) => help(src, true, ...args),
     "hardcopy": ({src, range}) => hardcopy(src, range),
