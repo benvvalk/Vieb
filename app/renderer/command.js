@@ -1144,6 +1144,18 @@ const openSpecialPage = (src, specialPage, forceNewtab, section = null) => {
 }
 
 /**
+ * Edit a file on the local filesystem, using the in-browser text editor.
+ * @param {import("./common").RunSource} src
+ * @param {string} path
+ */
+const editFile = (src, path) => {
+    openSpecialPage(src, "editor", false)
+    const webview = currentPage();
+    webview?.addEventListener('did-finish-load',
+        () => webview?.send("load-file", path))
+}
+
+/**
  * Open the help page at a specific section.
  * @param {import("./common").RunSource} src
  * @param {boolean} forceNewtab
@@ -2667,7 +2679,7 @@ const commands = {
     "echo": ({args, src}) => notify({
         "fields": [args.join(" ")], "id": "util.untranslated", src
     }),
-    "edit": ({src}) => openSpecialPage(src, "editor", false),
+    "edit": ({src, args}) => editFile(src, args[0]),
     "h": ({src, args}) => help(src, false, ...args),
     "h!": ({src, args}) => help(src, true, ...args),
     "hardcopy": ({src, range}) => hardcopy(src, range),
