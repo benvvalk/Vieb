@@ -357,6 +357,8 @@ body:not(#app) ::placeholder {color: var(--placeholder-text);}
 #downloadspage .misc {display: flex;margin: .5em;flex-direction: column;width: calc(100% - 1em);}
 #downloadspage .filelocation {cursor: pointer;}
 #downloadspage img {cursor: pointer;}
+/* editor */
+#editorpage html,body,textarea {width: 100vw;height: 100vh;overflow-x: hidden;box-sizing: border-box;}
 /* help */
 #helppage {margin: 3vw;width: auto;line-height: 2;}
 #helppage main {max-width: 65em;margin: auto;}
